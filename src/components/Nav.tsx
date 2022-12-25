@@ -52,6 +52,7 @@ const Nav = () => {
           <div key={v.link}>
             <Link
               to={v.link}
+              activeClassName={`${v.color} border-b-2 dark:text-white`}
               className={`${
                 v.color
               } cursor-pointer block h-7.5 transition-all text-center hover:border-b-2 dark:hover:text-white mr-6 ${

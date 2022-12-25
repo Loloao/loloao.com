@@ -1,17 +1,18 @@
 import React, { FC } from "react";
-import Header from "./Header";
+import Header, { MODE as MODE_VALUE } from "./Header";
 import Footer from "./Footer";
 
 interface props {
+  onChangeMode?: (MODE_VALUE) => void;
   children?: React.ReactNode;
 }
 
 const Content = (props: props) => {
   return (
-    <div className="h-screen dark:bg-black dark:text-slate-300 bg-orange-50 text-slate-900 overflow-hidden">
-      <div className="xl:w-[1280px] sm:px-9 m-auto">
-        <Header />
-        {props.children}
+    <div className="dark:bg-black min-h-screen h-full dark:text-white bg-orange-50 text-slate-900 ">
+      <div className="xl:w-[1280px] sm:px-9 m-auto flex flex-col justify-between">
+        <Header onChangeMode={props.onChangeMode} />
+        <div className="px-3 sm:px-0 min-w-[360px]">{props.children}</div>
         <Footer />
       </div>
     </div>
@@ -19,3 +20,4 @@ const Content = (props: props) => {
 };
 
 export default Content;
+export const MODE = MODE_VALUE;

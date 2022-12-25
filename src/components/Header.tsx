@@ -1,14 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "gatsby";
 import Nav from "./Nav";
 import Moon from "../assets/Moon";
 import Sun from "../assets/Sun";
 
-const Header = () => {
-  const [mode, switchMode] = useState<boolean>(true);
+export enum MODE {
+  DARK = "dark",
+  LIGHT = "light",
+}
+
+interface HeaderProps {
+  onChangeMode?: (mode: MODE) => void;
+}
+
+const Header = (props: HeaderProps) => {
+  const { LIGHT, DARK } = MODE;
+  const modeValue = localStorage.getItem("mode");
+  const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
 
   useEffect(() => {
-    if (mode) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
+    if (mode === DARK) {
+      document.documentElement.classList.add(DARK);
+      localStorage.setItem("mode", DARK);
+    } else {
+      document.documentElement.classList.remove(DARK);
+      localStorage.setItem("mode", LIGHT);
+    }
+    props.onChangeMode?.(mode);
   }, [mode]);
 
   const getModeSvg = () => {
@@ -17,16 +35,19 @@ const Header = () => {
   };
 
   return (
-    <header className="min-w-[400px] w-auto px-3 sm:px-0 border-b dark:border-b-slate-800 border-gray-200 sm:border-none flex justify-between">
+    <header className="min-w-[360px] w-auto px-3 sm:px-0 border-b dark:border-b-slate-800 border-gray-200 sm:border-none flex justify-between">
       <div>
-        <div className="max-sm:hidden mt-7 text-2xl font-bold py-2 dark:text-white text-black">
+        <Link
+          to="/"
+          className="max-sm:hidden mt-7 text-2xl font-bold py-2 dark:text-white text-black"
+        >
           Loloao
-        </div>
+        </Link>
         <Nav />
       </div>
       <div
         className="flex justify-center items-center dark:hover:border-slate-400 dark:bg-gray-900 dark:border-gray-600 border-gray-500 hover:border-gray-500 border rounded-full cursor-pointer w-10 h-10 self-center"
-        onClick={() => switchMode(!mode)}
+        onClick={() => switchMode(mode === DARK ? LIGHT : DARK)}
       >
         {getModeSvg()}
       </div>
@@ -35,3 +56,5 @@ const Header = () => {
 };
 
 export default Header;
+
+// await import("github-markdown-css/github-markdown-light.css");

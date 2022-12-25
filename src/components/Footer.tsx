@@ -24,7 +24,7 @@ const madeWithLinks: LinkItem[] = [
 
 export default () => {
   return (
-    <footer className="flex justify-center">
+    <footer className="flex justify-center min-w-[360px]">
       <section>
         <nav className="flex justify-center mb-3">
           <span className="hidden sm:block">Made by Loloao</span>
