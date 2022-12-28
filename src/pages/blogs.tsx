@@ -1,6 +1,10 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
+
 import Layout from "../components/Layout";
+import BlogList from "../components/BlogList";
+import SidebarWrapper from "../components/SidebarWrapper";
+import SideBar, { SIDEBAR_TYPE } from "../components/SideBar";
 
 interface Blog {
   title: string;
@@ -33,20 +37,24 @@ export default function blogs({ data }) {
   console.log(timelineMap, "timelineMap");
   return (
     <Layout>
-      <div>博客</div>
-      {Array.from(timelineMap.keys()).map((v) => {
-        const year = v;
-        const blogs = timelineMap.get(year);
-        console.log(v, "v");
-        return (
-          <div key={year}>
-            <div>{year}</div>
-            {blogs.map((v) => {
-              return <div key={v.slug}>{v.title}</div>;
-            })}
-          </div>
-        );
-      })}
+      <div className="flex justify-between w-full">
+        <div className="flex-1 mr-10">
+          {Array.from(timelineMap.keys()).map((v) => {
+            return (
+              <BlogList title={v} blogList={timelineMap.get(v)} doNotShowYear />
+            );
+          })}
+        </div>
+        <div>
+          <SidebarWrapper title="专栏">
+            <SideBar list={categorys} type={SIDEBAR_TYPE.CATEGORY} />
+          </SidebarWrapper>
+          <br />
+          <SidebarWrapper title="标签">
+            <SideBar list={tags} type={SIDEBAR_TYPE.TAG} />
+          </SidebarWrapper>
+        </div>
+      </div>
     </Layout>
   );
 }
