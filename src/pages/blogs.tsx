@@ -3,10 +3,10 @@ import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import BlogList from "../components/BlogList";
-import SidebarWrapper from "../components/SidebarWrapper";
-import SideBar, { SIDEBAR_TYPE } from "../components/SideBar";
+import SideBar from "../components/SideBar";
+import SideBarLayout from "../components/SideBarLayout";
 
-interface Blog {
+export interface Blog {
   title: string;
   date: string;
   slug: string;
@@ -34,26 +34,24 @@ export default function blogs({ data }) {
 
     return sum;
   }, timelineMap);
-  console.log(timelineMap, "timelineMap");
   return (
     <Layout>
-      <div className="flex justify-between w-full">
-        <div className="flex-1 mr-10">
-          {Array.from(timelineMap.keys()).map((v) => {
-            return (
-              <BlogList title={v} blogList={timelineMap.get(v)} doNotShowYear />
-            );
-          })}
+      <div className="sidebar-content-wrapper">
+        <div className="flex-1 lg:mr-10">
+          <SideBarLayout>
+            {Array.from(timelineMap.keys()).map((v) => {
+              return (
+                <BlogList
+                  key={v}
+                  title={v}
+                  blogList={timelineMap.get(v)}
+                  doNotShowYear
+                />
+              );
+            })}
+          </SideBarLayout>
         </div>
-        <div>
-          <SidebarWrapper title="专栏">
-            <SideBar list={categorys} type={SIDEBAR_TYPE.CATEGORY} />
-          </SidebarWrapper>
-          <br />
-          <SidebarWrapper title="标签">
-            <SideBar list={tags} type={SIDEBAR_TYPE.TAG} />
-          </SidebarWrapper>
-        </div>
+        <SideBar />
       </div>
     </Layout>
   );

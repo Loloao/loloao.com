@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .sidebar-content-wrapper {
+    @apply flex justify-between w-full flex-col lg:flex-row;
+  }
+}

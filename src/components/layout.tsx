@@ -10,9 +10,11 @@ interface props {
 const Content = (props: props) => {
   return (
     <div className="dark:bg-black min-h-screen h-full dark:text-white bg-orange-50 text-slate-900 ">
-      <div className="xl:w-[1280px] sm:px-9 m-auto flex flex-col justify-between">
+      <div className="h-full min-h-screen xl:w-[1280px] sm:px-9 m-auto flex flex-col justify-between">
         <Header onChangeMode={props.onChangeMode} />
-        <div className="px-3 sm:px-0 min-w-[360px]">{props.children}</div>
+        <div className="flex-1 px-3 sm:px-0 min-w-[360px]">
+          {props.children}
+        </div>
         <Footer />
       </div>
     </div>

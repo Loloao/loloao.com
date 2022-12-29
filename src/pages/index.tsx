@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
-import BlogList from "../components/blogList";
+import BlogList from "../components/BlogList";
 // import Helmet from "react-helmet";
 import { SEO } from "../components/SEO";
 import config from "../utils/config";

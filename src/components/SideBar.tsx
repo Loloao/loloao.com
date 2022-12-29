@@ -1,33 +1,41 @@
 import React from "react";
 import { Link } from "gatsby";
+import { useGetCategoriesAndTags } from "../utils";
+import SidebarWrapper from "../components/SidebarWrapper";
+import Tags from "./Tags";
 
-export enum SIDEBAR_TYPE {
-  CATEGORY = "catetory",
-  TAG = "tag",
-}
+export default () => {
+  const data = useGetCategoriesAndTags();
+  const {
+    categorys: { group: categoryList },
+    tags: { group: tags },
+  } = data;
 
-interface Props {
-  list: string[];
-  type: SIDEBAR_TYPE;
-}
+  const tagsList = tags.map((v) => v.name);
 
-const classNameMap = {
-  [SIDEBAR_TYPE.CATEGORY]: "hover:bg-red-900 mb-1 px-2 transition rounded",
-  [SIDEBAR_TYPE.TAG]: "",
-};
-
-export default (props: Props) => {
-  const { type } = props;
-  const isCategory = type === SIDEBAR_TYPE.CATEGORY;
   return (
-    <div className={`flex ${isCategory ? "flex-col" : ""} `}>
-      {props.list.map((v) => {
-        return (
-          <Link className={classNameMap[props.type]} to={"/" + v} key={v}>
-            {v}
-          </Link>
-        );
-      })}
+    <div className="flex flex-col flex-between">
+      <SidebarWrapper title="专栏">
+        <div className="flex flex-col">
+          {categoryList.map((v) => {
+            const { name, totalCount } = v;
+            return (
+              <Link
+                className="flex justify-between hover:bg-[#eee] dark:hover:bg-[#222] hover:text-green-600 mb-1 px-2 transition rounded"
+                to={"/category/" + name}
+                key={name}
+              >
+                <div>{name}</div>
+                <div>{totalCount}</div>
+              </Link>
+            );
+          })}
+        </div>
+      </SidebarWrapper>
+      <br />
+      <SidebarWrapper title="标签">
+        <Tags tagsList={tagsList} />
+      </SidebarWrapper>
     </div>
   );
 };
