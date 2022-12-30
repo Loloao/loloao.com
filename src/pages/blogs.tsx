@@ -4,7 +4,6 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import BlogList from "../components/BlogList";
 import SideBar from "../components/SideBar";
-import SideBarLayout from "../components/SideBarLayout";
 
 export interface Blog {
   title: string;
@@ -38,18 +37,16 @@ export default function blogs({ data }) {
     <Layout>
       <div className="sidebar-content-wrapper">
         <div className="flex-1 lg:mr-10">
-          <SideBarLayout>
-            {Array.from(timelineMap.keys()).map((v) => {
-              return (
-                <BlogList
-                  key={v}
-                  title={v}
-                  blogList={timelineMap.get(v)}
-                  doNotShowYear
-                />
-              );
-            })}
-          </SideBarLayout>
+          {Array.from(timelineMap.keys()).map((v) => {
+            return (
+              <BlogList
+                title={v}
+                key={v}
+                doNotShowYear
+                blogList={timelineMap.get(v)}
+              />
+            );
+          })}
         </div>
         <SideBar />
       </div>

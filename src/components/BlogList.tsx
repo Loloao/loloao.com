@@ -16,20 +16,15 @@ interface Props {
 }
 
 export default (props: Props) => {
+  const { blogList } = props;
+
   return (
     <div>
-      <div className="w-full dark:text-white">
-        <div className="flex justify-between my-5">
-          <h2 className="text-3xl font-bold">{props.title}</h2>
-          {props.needViewAll ? (
-            <button className="text-sm bg-white dark:bg-slate-800 rounded-full border-gray-300 dark:border-transparent border dark:hover:border-slate-500 px-3 hover:border-slate-400">
-              查看所有
-            </button>
-          ) : null}
-        </div>
+      <div className="w-full dark:text-white my-5">
+        <h2 className="text-3xl font-bold">{props.title}</h2>
       </div>
       <div className="flex flex-col">
-        {props.blogList.map((v) => {
+        {blogList.map((v) => {
           return (
             <Link
               className="text-xl border-b py-2 flex justify-between dark:border-slate-800 border-gray-200 last:border-transparent dark:last:border-transparent"

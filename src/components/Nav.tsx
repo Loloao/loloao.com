@@ -29,11 +29,11 @@ const navList: NavList = [
     title: "博客",
     color: "border-b-fuchsia-700",
   },
-  {
-    link: "/tags",
-    title: "标签",
-    color: "border-b-yellow-400",
-  },
+  // {
+  //   link: "/tags",
+  //   title: "标签",
+  //   color: "border-b-yellow-400",
+  // },
 ];
 
 const ExternalLinks = [
