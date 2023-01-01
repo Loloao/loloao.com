@@ -12,8 +12,8 @@ export const formatDateToCn = (
 ) => {
   const date = new Date(time);
   const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDay();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
   if (option.doNotShowYear) {
     return `${month}月${day}日`;
   }
