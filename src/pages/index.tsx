@@ -35,7 +35,7 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query MyQuery {
-    allMarkdownRemark(sort: { frontmatter: { date: ASC } }, limit: 6) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }, limit: 6) {
       edges {
         node {
           frontmatter {
