@@ -6,7 +6,6 @@ import { formatDateToCn } from "../utils";
 import Tags from "../components/Tags";
 import "../styles/blogTemplate.css";
 import SEO from "../components/SEO";
-import Helmet from "react-helmet";
 
 const DARK_MODE_LINK = "/github-markdown-dark.css";
 const LIGHT_MODE_LINK = "/github-markdown-light.css";
@@ -27,11 +26,10 @@ export default ({ data }) => {
   const {
     markdownRemark: {
       html,
+      excerpt,
       frontmatter: { title, date, category, tags },
     },
   } = data;
-
-  console.log(tags, "tagsss");
 
   const onChangeMode = (mode) => {
     if (mode === MODE.DARK) {
@@ -78,12 +76,24 @@ export default ({ data }) => {
 };
 
 export const Head = ({ data }) => {
-  return <SEO />;
+  const {
+    markdownRemark: {
+      excerpt,
+      frontmatter: { title, thumbnail },
+    },
+  } = data;
+  const blogSEO = {
+    title,
+    excerpt,
+    thumbnail,
+  };
+  return <SEO blogSEO={blogSEO} />;
 };
 
 export const query = graphql`
   query queryBlog($slug: String) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      excerpt(pruneLength: 100)
       id
       html
       frontmatter {
@@ -94,6 +104,7 @@ export const query = graphql`
         path
         tags
         title
+        thumbnail
       }
     }
   }
