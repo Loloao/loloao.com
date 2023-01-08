@@ -10,12 +10,10 @@
 module.exports = {
   siteMetadata: {
     title: "Loloao",
-    author: {
-      name: "Loloao",
-    },
-    pathPrefix: "/",
-    siteUrl: "https://www.loloao.com",
-    description: "我是一个前端工程师，这里是我的数字基地",
+    siteUrl: "https://loloao.github.io",
+    description: "我是一名前端工程师，这里是我的数字基地",
+    image: "/logo.webp",
+    twitterUsername: "",
     // feedUrl:
     // logo:
   },

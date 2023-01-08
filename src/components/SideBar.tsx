@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { useGetCategoriesAndTags } from "../utils";
+import useGetCategoriesAndTags from "../utils/hooks/useGetCategoriesAndTags";
 import SidebarWrapper from "../components/SidebarWrapper";
 import Tags from "./Tags";
 

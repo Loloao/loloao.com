@@ -49,7 +49,10 @@ export default ({ data }) => {
 
 export const query = graphql`
   query tagsQuery($tag: String) {
-    allMarkdownRemark(filter: { frontmatter: { tags: { in: [$tag] } } }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+      sort: { frontmatter: { date: DESC } }
+    ) {
       nodes {
         frontmatter {
           title

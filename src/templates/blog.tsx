@@ -5,6 +5,7 @@ import SidebarWrapper from "../components/SidebarWrapper";
 import { formatDateToCn } from "../utils";
 import Tags from "../components/Tags";
 import "../styles/blogTemplate.css";
+import SEO from "../components/SEO";
 import Helmet from "react-helmet";
 
 const DARK_MODE_LINK = "/github-markdown-dark.css";
@@ -74,6 +75,10 @@ export default ({ data }) => {
       </div>
     </Layout>
   );
+};
+
+export const Head = ({ data }) => {
+  return <SEO />;
 };
 
 export const query = graphql`

@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import BlogList from "../components/BlogList";
 import BlockWrapper from "../components/BlockWrapper";
 // import Helmet from "react-helmet";
-import { SEO } from "../components/SEO";
+import SEO from "../components/SEO";
 import config from "../utils/config";
 
 export default function Home({ data }) {
@@ -32,6 +32,8 @@ export default function Home({ data }) {
     </Layout>
   );
 }
+
+export const Header = () => <SEO />;
 
 export const query = graphql`
   query MyQuery {

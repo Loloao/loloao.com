@@ -5,6 +5,10 @@
   margin: 0 auto;
   padding: 45px;
 }
+ul,
+ol {
+  list-style-type: disc;
+}
 
 @media (max-width: 767px) {
   .markdown-body {

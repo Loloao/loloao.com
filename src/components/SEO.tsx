@@ -1,91 +1,46 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import useSiteMetadata from "../utils/hooks/useSiteDatameta";
 
-import config from "../utils/config";
+interface Props {
+  title?: string;
+  description?: string;
+  pathname?: string;
+  children?: React.ReactNode;
+}
 
-export const SEO = ({ postNode, postPath, postSEO, customDescription }) => {
-  let title;
-  let description;
-  let image = config.siteLogo;
-  let postURL;
+export default ({ title, description, pathname, children }: Props) => {
+  const {
+    title: defaultTitle,
+    description: defaultDescription,
+    image,
+    siteUrl,
+    twitterUsername,
+  } = useSiteMetadata();
 
-  if (postSEO) {
-    const postMeta = postNode.frontmatter;
-    title = postMeta.title;
-    description = postNode.excerpt;
+  const seo = {
+    title: title || defaultTitle,
+    description: description || defaultDescription,
+    image: `${siteUrl}${image}`,
+    url: `${siteUrl}${pathname || ``}`,
+    twitterUsername,
+  };
 
-    if (postMeta.thumbnail) {
-      image = postMeta.thumbnail.childImageSharp.fixed.src;
-    }
-
-    postURL = `${config.siteUrl}${postPath}`;
-  } else {
-    title = config.siteTitle;
-    description = customDescription || config.description;
-  }
-
-  image = `${config.siteUrl}${image}`;
-  const schemaOrgJSONLD = [
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      url: config.siteUrl,
-      name: title,
-      alternateName: title,
-    },
-  ];
-
-  if (postSEO) {
-    // schemaOrgJSONLD.push(
-    //   {
-    //     "@context": "http://schema.org",
-    //     "@type": "BreadcrumbList",
-    //     itemListElement: [
-    //       {
-    //         "@type": "ListItem",
-    //         position: 1,
-    //         item: {
-    //           "@id": postURL,
-    //           name: title,
-    //           image,
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     "@context": "http://schema.org",
-    //     "@type": "BlogPosting",
-    //     url: config.siteUrl,
-    //     name: title,
-    //     alternateName: title,
-    //     headline: title,
-    //     image: {
-    //       "@type": "ImageObject",
-    //       url: image,
-    //     },
-    //     description,
-    //   }
-    // );
-  }
   return (
-    <Helmet>
-      <meta name="description" content={description} />
-      <meta name="image" content={image} />
-
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgJSONLD)}
-      </script>
-
-      <meta property="og:url" content={postSEO ? postURL : config.siteUrl} />
-      {postSEO && <meta property="og:type" content="article" />}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
-
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-    </Helmet>
+    <>
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      <meta name="image" content={seo.image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:url" content={seo.url} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:image" content={seo.image} />
+      <meta name="twitter:creator" content={seo.twitterUsername} />
+      <link
+        rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
+      />
+      {children}
+    </>
   );
 };
