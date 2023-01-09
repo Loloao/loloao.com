@@ -5,7 +5,7 @@ pages:
   image: node:latest
   stage: deploy
   script:
-    - npm install
+    - npm install -f
     - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:
     paths:
