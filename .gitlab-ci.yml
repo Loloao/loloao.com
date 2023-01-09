@@ -1,5 +1,15 @@
 stages:
+  - getSubmodule
   - deploy
+
+getSubmodule:
+  image: alpine@latest
+  stage: getSubmodule
+  script:
+    - sudo apk update
+    - sudo apk add git
+    - git --version
+    - git submodule update --init
 
 pages:
   image: node:latest
