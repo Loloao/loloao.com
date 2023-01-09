@@ -5,7 +5,6 @@ pages:
   image: node:latest
   stage: deploy
   script:
-    - npm config set registry https://registry.npm.taobao.org
     - npm install sharp
     - npm install -f
     - ./node_modules/.bin/gatsby build --prefix-paths
