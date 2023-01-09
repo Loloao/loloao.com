@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 
 export default function about() {
-  return <Layout>about page</Layout>;
+  return <Layout>about page test pipeline</Layout>;
 }
 
 export const Head = () => {
