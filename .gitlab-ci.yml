@@ -6,7 +6,7 @@ pages:
   stage: deploy
   script:
     - mkdir node_modules
-    - cp -r ./gatsby/* ./node_modules/gatsby
+    - cp -r ./gatsby ./node_modules/
     - npm install -f
     - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:
