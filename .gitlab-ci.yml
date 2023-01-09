@@ -5,7 +5,8 @@ pages:
   image: node:latest
   stage: deploy
   script:
-    - npm install gatsby -g
+    - mkdir node_modules
+    - cp -r ./gatsby/* ./node_modules/gatsby
     - npm install -f
     - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:
