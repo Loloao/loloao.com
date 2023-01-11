@@ -9,7 +9,7 @@ pages:
   image: node:latest
   stage: deploy
   before_script:
-    - git -v
+    - git --version
     - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
     - eval $(ssh-agent -s)
   script:
