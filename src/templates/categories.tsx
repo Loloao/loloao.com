@@ -51,7 +51,6 @@ export const query = graphql`
   query categoriesQuery($category: String) {
     allMarkdownRemark(
       filter: { frontmatter: { category: { eq: $category } } }
-      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {

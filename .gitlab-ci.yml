@@ -2,19 +2,19 @@ stages:
   # - getSubmodule
   - deploy
 
-# getSubmodule:
-#   image: alpine@latest
-#   stage: getSubmodule
-#   script:
-#     - sudo apk update
-#     - sudo apk add git
-#     - git --version
-#     - git submodule update --init
+# variables:
+#   GIT_SUBMODULE_STRATEGY: recursive
 
 pages:
   image: node:latest
   stage: deploy
+  before_script:
+    - git -v
+    - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
   script:
+    # 国内install gatsby 会因为无法下载libvipse失败
+    # 所以只能本地移动到 node_modules
     - mkdir node_modules
     - cp -r ./gatsby ./node_modules/
     - npm install -f
