@@ -16,7 +16,7 @@ pages:
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - cd ./notes
-    - git pull origin main
+    - git submodule update --init
     - cd ../
   script:
     # 国内install gatsby 会因为无法下载libvipse失败
