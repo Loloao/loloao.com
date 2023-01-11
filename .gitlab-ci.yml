@@ -23,6 +23,7 @@ pages:
     # 所以只能本地移动到 node_modules
     - mkdir node_modules
     - cp -r ./gatsby ./node_modules/
+    - cp -r ./sharp ./node_modules/
     - npm install -f
     - npm run build
     # - ./node_modules/.bin/gatsby build --prefix-paths
