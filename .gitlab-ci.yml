@@ -17,6 +17,7 @@ pages:
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - cd ./notes
     - git pull origin main
+    - cd ../
   script:
     # 国内install gatsby 会因为无法下载libvipse失败
     # 所以只能本地移动到 node_modules
