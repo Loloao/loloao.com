@@ -21,6 +21,7 @@ pages:
   script:
     # 国内install gatsby 会因为无法下载libvipse失败
     # 所以只能本地移动到 node_modules
+    - ls ./notes
     - mkdir node_modules
     - cp -r ./gatsby ./node_modules/
     - npm install -f
