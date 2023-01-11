@@ -8,22 +8,21 @@ stages:
 pages:
   image: node:latest
   stage: deploy
+  # 由于 gitlab 未提供拉取私有仓库 submodule 的配置，所以只能自行配置
+  # https://stackoverflow.com/questions/25689231/getting-gitlab-ci-to-clone-private-repositories
   before_script:
-    - git --version
     - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - cd ./notes
     - git submodule update --init
-    - cd ../
+    - ls ./notes
   script:
     # 国内install gatsby 会因为无法下载libvipse失败
     # 所以只能本地移动到 node_modules
-    - ls ./notes
-    - mkdir node_modules
-    - cp -r ./gatsby ./node_modules/
+    # - mkdir node_modules
+    # - cp -r ./gatsby ./node_modules/
     - npm install -f
     - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:

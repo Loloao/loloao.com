@@ -15,16 +15,16 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { LIGHT, DARK } = MODE;
-  const modeValue = localStorage.getItem("mode");
-  const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
+  // const modeValue = localStorage.getItem("mode");
+  const [mode, switchMode] = useState<MODE>(DARK);
 
   useEffect(() => {
     if (mode === DARK) {
       document.documentElement.classList.add(DARK);
-      localStorage.setItem("mode", DARK);
+      // localStorage.setItem("mode", DARK);
     } else {
       document.documentElement.classList.remove(DARK);
-      localStorage.setItem("mode", LIGHT);
+      // localStorage.setItem("mode", LIGHT);
     }
     props.onChangeMode?.(mode);
   }, [mode]);

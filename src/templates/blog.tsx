@@ -17,10 +17,8 @@ interface DetailContent {
 }
 
 export default ({ data }) => {
-  const localMode = localStorage.getItem("mode");
-  const [modeLink, changeModeLink] = useState<string>(
-    localMode ? DARK_MODE_LINK : LIGHT_MODE_LINK
-  );
+  // const localMode = localStorage.getItem("mode");
+  const [modeLink, changeModeLink] = useState<string>(DARK_MODE_LINK);
 
   useEffect(() => {}, [modeLink]);
   const {
