@@ -39,3 +39,14 @@ export const useGetCategoriesAndTags = () => {
   `);
   return data;
 };
+
+export const insertLink = (linkId: string, linkHref: string) => {
+  const head = document.getElementsByTagName("head")[0];
+  const link = document.createElement("link");
+  link.id = linkId;
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = linkHref;
+  link.media = "all";
+  head.appendChild(link);
+};

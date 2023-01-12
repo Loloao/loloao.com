@@ -1,6 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useLayoutEffect } from "react";
 import Header, { MODE as MODE_VALUE } from "../Header";
 import Footer from "../Footer";
+import { insertLink } from "../../utils";
+
+export enum MODE_LINK_ID {
+  DARK = "dark-mode-link",
+  LIGHT = "light-mode-link",
+}
 
 interface props {
   onChangeMode?: (MODE_VALUE) => void;
@@ -8,6 +14,14 @@ interface props {
 }
 
 const Content = (props: props) => {
+  const DARK_MODE_LINK = "/github-markdown-dark.css";
+  const LIGHT_MODE_LINK = "/github-markdown-light.css";
+  useLayoutEffect(() => {
+    if (!document.getElementById(MODE_LINK_ID.DARK)) {
+      insertLink(MODE_LINK_ID.DARK, DARK_MODE_LINK);
+      insertLink(MODE_LINK_ID.LIGHT, LIGHT_MODE_LINK);
+    }
+  });
   // console.log(localStorage)
   return (
     <div className="dark:bg-black min-h-screen h-full dark:text-white bg-orange-50 text-slate-900 ">

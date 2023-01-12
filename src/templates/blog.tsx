@@ -1,14 +1,11 @@
 import { graphql, Link } from "gatsby";
 import React, { useEffect, useState } from "react";
-import Layout, { MODE } from "../components/Layout";
+import Layout, { MODE, MODE_LINK_ID } from "../components/Layout";
 import SidebarWrapper from "../components/SidebarWrapper";
 import { formatDateToCn } from "../utils";
 import Tags from "../components/Tags";
 import "../styles/blogTemplate.css";
 import SEO from "../components/SEO";
-
-const DARK_MODE_LINK = "/github-markdown-dark.css";
-const LIGHT_MODE_LINK = "/github-markdown-light.css";
 
 interface DetailContent {
   title: string;
@@ -17,10 +14,7 @@ interface DetailContent {
 }
 
 export default ({ data }) => {
-  // const localMode = localStorage.getItem("mode");
-  const [modeLink, changeModeLink] = useState<string>(DARK_MODE_LINK);
-
-  useEffect(() => {}, [modeLink]);
+  const localMode = localStorage.getItem("mode");
   const {
     markdownRemark: {
       html,
@@ -30,16 +24,25 @@ export default ({ data }) => {
   } = data;
 
   const onChangeMode = (mode) => {
+    if (mode === MODE.DARK) setMarkdownMode(MODE.DARK);
+    else setMarkdownMode(MODE.LIGHT);
+  };
+
+  const setMarkdownMode = (mode) => {
+    const darkModeLink = document.getElementById(MODE_LINK_ID.DARK);
+    const lightModeLink = document.getElementById(MODE_LINK_ID.LIGHT);
+    const parentNode = darkModeLink?.parentElement;
+
     if (mode === MODE.DARK) {
-      changeModeLink(DARK_MODE_LINK);
+      parentNode?.insertBefore(lightModeLink!, darkModeLink);
     } else {
-      changeModeLink(LIGHT_MODE_LINK);
+      parentNode?.insertBefore(darkModeLink!, lightModeLink);
     }
   };
 
   return (
     <Layout onChangeMode={onChangeMode}>
-      <link rel="stylesheet" type="text/css" href={modeLink} />
+      {/* <link rel="stylesheet" type="text/css" href={modeLink} /> */}
       <div className="flex flex-col lg:flex-row">
         <article className="flex-1 lg:mr-5 mb-5">
           <div
