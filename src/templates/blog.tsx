@@ -14,7 +14,6 @@ interface DetailContent {
 }
 
 export default ({ data }) => {
-  const localMode = localStorage.getItem("mode");
   const {
     markdownRemark: {
       html,
