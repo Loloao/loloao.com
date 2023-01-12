@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import Nav from "./Nav";
 import Moon from "../assets/Moon";
 import Sun from "../assets/Sun";
+import { isBrowser } from "../utils";
 
 export enum MODE {
   DARK = "dark",
@@ -15,16 +16,18 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { LIGHT, DARK } = MODE;
-  const modeValue = window?.localStorage.getItem("mode");
+  const windowGlobal = typeof window !== "undefined" && window;
+
+  const modeValue = isBrowser() && window.localStorage.getItem("mode");
   const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
 
   useEffect(() => {
     if (mode === DARK) {
       document.documentElement.classList.add(DARK);
-      window?.localStorage.setItem("mode", DARK);
+      isBrowser() && window.localStorage.setItem("mode", DARK);
     } else {
       document.documentElement.classList.remove(DARK);
-      window?.localStorage.setItem("mode", LIGHT);
+      isBrowser() && window.localStorage.setItem("mode", LIGHT);
     }
     props.onChangeMode?.(mode);
   }, [mode]);

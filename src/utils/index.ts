@@ -50,3 +50,7 @@ export const insertLink = (linkId: string, linkHref: string) => {
   link.media = "all";
   head.appendChild(link);
 };
+
+// 由于 gatsby 生成静态文件时没有 window 对象(只有在浏览器才有 window 对象)
+// 所以需要判断是否存在 window 再调用 window 的方法比如 localStorage
+export const isBrowser = () => typeof window !== "undefined";
