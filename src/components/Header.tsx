@@ -16,9 +16,11 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { LIGHT, DARK } = MODE;
-  const windowGlobal = typeof window !== "undefined" && window;
-
   const modeValue = isBrowser() && window.localStorage.getItem("mode");
+
+  if (modeValue === DARK) document.documentElement.classList.add(DARK);
+  else document.documentElement.classList.remove(DARK);
+
   const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
 
   useEffect(() => {

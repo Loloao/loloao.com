@@ -41,9 +41,9 @@ export default ({ data }) => {
 
   return (
     <Layout onChangeMode={onChangeMode}>
-      {/* <link rel="stylesheet" type="text/css" href={modeLink} /> */}
-      <div className="flex flex-col lg:flex-row">
-        <article className="flex-1 lg:mr-5 mb-5">
+      <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
+        {/* 设置 max-width 和 min-width 才为响应式 */}
+        <article className="max-w-full min-w-0">
           <div
             className="markdown-body"
             dangerouslySetInnerHTML={{ __html: html }}

@@ -53,4 +53,5 @@ export const insertLink = (linkId: string, linkHref: string) => {
 
 // 由于 gatsby 生成静态文件时没有 window 对象(只有在浏览器才有 window 对象)
 // 所以需要判断是否存在 window 再调用 window 的方法比如 localStorage
+// https://stackoverflow.com/questions/64371186/gatsby-window-not-available-during-server-side-rendering-build-error
 export const isBrowser = () => typeof window !== "undefined";
