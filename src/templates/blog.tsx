@@ -61,7 +61,7 @@ export default ({ data }) => {
               <Link
                 to={`/category/${category}`}
                 className="
-                 cursor-pointer underline text-indigo-500 list-disc marker:text-red-500 marker:text-lg ml-5"
+                 cursor-pointer underline text-pink-500 hover:text-pink-700 transition-all  list-disc marker:text-red-500 marker:text-lg "
               >
                 {category}
               </Link>

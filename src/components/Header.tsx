@@ -18,8 +18,9 @@ const Header = (props: HeaderProps) => {
   const { LIGHT, DARK } = MODE;
   const modeValue = isBrowser() && window.localStorage.getItem("mode");
 
-  if (modeValue === DARK) document.documentElement.classList.add(DARK);
-  else document.documentElement.classList.remove(DARK);
+  if (modeValue === DARK)
+    isBrowser() && document.documentElement.classList.add(DARK);
+  else isBrowser() && document.documentElement.classList.remove(DARK);
 
   const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
 
