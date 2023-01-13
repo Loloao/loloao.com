@@ -28,7 +28,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <div className="sidebar-content-wrapper">
+      <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
         <div className="flex-1 mr-10">
           {Array.from(timelineMap.keys()).map((v) => {
             return (
