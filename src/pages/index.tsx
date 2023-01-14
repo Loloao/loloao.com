@@ -33,7 +33,7 @@ export default function Home({ data }) {
   );
 }
 
-export const Header = () => <SEO />;
+export const Head = () => <SEO />;
 
 export const query = graphql`
   query MyQuery {
