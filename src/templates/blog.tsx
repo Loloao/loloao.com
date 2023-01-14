@@ -5,6 +5,8 @@ import SidebarWrapper from "../components/SidebarWrapper";
 import { formatDateToCn } from "../utils";
 import Tags from "../components/Tags";
 import "../styles/blogTemplate.css";
+import "../styles/github-markdown-dark.css";
+import "../styles/github-markdown-light.css";
 import SEO from "../components/SEO";
 
 interface DetailContent {
@@ -22,25 +24,8 @@ export default ({ data }) => {
     },
   } = data;
 
-  const onChangeMode = (mode) => {
-    if (mode === MODE.DARK) setMarkdownMode(MODE.DARK);
-    else setMarkdownMode(MODE.LIGHT);
-  };
-
-  const setMarkdownMode = (mode) => {
-    const darkModeLink = document.getElementById(MODE_LINK_ID.DARK);
-    const lightModeLink = document.getElementById(MODE_LINK_ID.LIGHT);
-    const parentNode = darkModeLink?.parentElement;
-
-    if (mode === MODE.DARK) {
-      parentNode?.insertBefore(lightModeLink!, darkModeLink);
-    } else {
-      parentNode?.insertBefore(darkModeLink!, lightModeLink);
-    }
-  };
-
   return (
-    <Layout onChangeMode={onChangeMode}>
+    <Layout>
       <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
         {/* 设置 max-width 和 min-width 才为响应式 */}
         <article className="max-w-full min-w-0">

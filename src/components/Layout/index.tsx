@@ -14,15 +14,6 @@ interface props {
 }
 
 const Content = (props: props) => {
-  const DARK_MODE_LINK = "/github-markdown-dark.css";
-  const LIGHT_MODE_LINK = "/github-markdown-light.css";
-  useLayoutEffect(() => {
-    if (!document.getElementById(MODE_LINK_ID.DARK)) {
-      insertLink(MODE_LINK_ID.DARK, DARK_MODE_LINK);
-      insertLink(MODE_LINK_ID.LIGHT, LIGHT_MODE_LINK);
-    }
-  });
-  // console.log(localStorage)
   return (
     <div className="dark:bg-black min-h-screen h-full dark:text-white bg-orange-50 text-slate-900 ">
       <div className="h-full min-h-screen xl:w-[1280px] sm:px-9 m-auto flex flex-col justify-between">

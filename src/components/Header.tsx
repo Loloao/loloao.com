@@ -45,9 +45,14 @@ const Header = (props: HeaderProps) => {
       <div>
         <Link
           to="/"
-          className="max-sm:hidden mt-7 text-2xl font-bold py-2 dark:text-white text-black"
+          className="flex max-sm:hidden mt-7 text-2xl font-bold py-2 dark:text-white text-black"
         >
-          Loloao
+          {mode === MODE.DARK ? (
+            <img src="/logo-dark.svg" className="h-7 mr-1" />
+          ) : (
+            <img src="/logo-light.svg" className="h-7 mr-1" />
+          )}
+          <div>Loloao</div>
         </Link>
         <Nav />
       </div>

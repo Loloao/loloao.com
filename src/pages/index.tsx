@@ -12,7 +12,7 @@ export default function Home({ data }) {
   const latest = data.allMarkdownRemark.edges.map((v) => v.node.frontmatter);
   return (
     <Layout>
-      <h1 className="text-4xl font-bold mt-[100px]">嗨！我是 Loloao!</h1>
+      <h1 className="text-4xl font-bold mt-[50px]">嗨！我是 Loloao!</h1>
       <br />
       <div className="text-lg mt-6">欢迎来到我的 web 基地.</div>
       <div className="text-lg mt-6">
