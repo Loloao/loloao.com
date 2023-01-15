@@ -40,20 +40,28 @@ export default ({ data }) => {
               {`发布于${formatDateToCn(date)}`}
             </li>
           </ul>
-          <h3 className="font-bold py-3 dark:text-white">专栏</h3>
-          <ul>
-            <li className="list-disc marker:text-red-500 marker:text-lg ml-5">
-              <Link
-                to={`/category/${category}`}
-                className="
+          {category && (
+            <>
+              <h3 className="font-bold py-3 dark:text-white">专栏</h3>
+              <ul>
+                <li className="list-disc marker:text-red-500 marker:text-lg ml-5">
+                  <Link
+                    to={`/category/${category}`}
+                    className="
                  cursor-pointer underline text-pink-500 hover:text-pink-700 transition-all  list-disc marker:text-red-500 marker:text-lg "
-              >
-                {category}
-              </Link>
-            </li>
-          </ul>
-          <h3 className="font-bold py-3 dark:text-white">标签</h3>
-          <Tags tagsList={tags} />
+                  >
+                    {category}
+                  </Link>
+                </li>
+              </ul>
+            </>
+          )}
+          {!!tags.length && (
+            <>
+              <h3 className="font-bold py-3 dark:text-white">标签</h3>
+              <Tags tagsList={tags} />
+            </>
+          )}
         </SidebarWrapper>
       </div>
     </Layout>

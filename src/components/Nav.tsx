@@ -20,7 +20,7 @@ const navList: NavList = [
     isMobileOnly: true,
   },
   {
-    link: "/about",
+    link: "/me",
     title: "关于",
     color: "border-b-blue-700",
   },
