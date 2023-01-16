@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import BlogList from "../components/BlogList";
 import SideBar from "../components/SideBar";
+import SEO from "../components/SEO";
 
 export interface Blog {
   title: string;
@@ -53,6 +54,8 @@ export default function blogs({ data }) {
     </Layout>
   );
 }
+
+export const Head = () => <SEO />;
 
 export const query = graphql`
   query MyQuery {

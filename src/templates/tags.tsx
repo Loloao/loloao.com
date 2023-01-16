@@ -5,6 +5,7 @@ import Layout, { MODE } from "../components/Layout";
 import BlogList from "../components/BlogList";
 import SideBar from "../components/SideBar";
 import { Blog } from "../pages/blogs";
+import SEO from "../components/SEO";
 
 export default ({ data }) => {
   const {
@@ -46,6 +47,8 @@ export default ({ data }) => {
     </Layout>
   );
 };
+
+export const Head = () => <SEO />;
 
 export const query = graphql`
   query tagsQuery($tag: String) {
