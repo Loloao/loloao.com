@@ -76,7 +76,7 @@ export default ({ blogSEO, title, description, pathname, children }: Props) => {
         {JSON.stringify(schemaOrgJSONLD)}
       </script>
 
-      <link rel="icon" href="logo-light.svg" type="image/x-icon" />
+      <link rel="icon" href="/logo-light.svg" type="image/x-icon" />
       {children}
     </>
   );
