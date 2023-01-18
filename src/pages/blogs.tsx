@@ -59,7 +59,10 @@ export const Head = () => <SEO />;
 
 export const query = graphql`
   query MyQuery {
-    blogs: allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    blogs: allMarkdownRemark(
+      filter: { frontmatter: { type: { eq: "note" } } }
+      sort: { frontmatter: { date: DESC } }
+    ) {
       edges {
         node {
           id
