@@ -8,6 +8,7 @@ import "../styles/blogTemplate.css";
 import "../styles/github-markdown-dark.css";
 import "../styles/github-markdown-light.css";
 import SEO from "../components/SEO";
+import Comments from "../components/comments";
 
 interface DetailContent {
   title: string;
@@ -33,6 +34,7 @@ export default ({ data }) => {
             className="markdown-body"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+          {/* <Comments /> */}
         </article>
         <SidebarWrapper title="详情">
           <ul>

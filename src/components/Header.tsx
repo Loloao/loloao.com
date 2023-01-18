@@ -17,10 +17,7 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   const { LIGHT, DARK } = MODE;
   const modeValue = isBrowser() && window.localStorage.getItem("mode");
-
-  if (modeValue === DARK)
-    isBrowser() && document.documentElement.classList.add(DARK);
-  else isBrowser() && document.documentElement.classList.remove(DARK);
+  console.log(modeValue, "Header modeValue");
 
   const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
 
@@ -28,7 +25,9 @@ const Header = (props: HeaderProps) => {
     if (mode === DARK) {
       document.documentElement.classList.add(DARK);
       isBrowser() && window.localStorage.setItem("mode", DARK);
+      console.log("trigger useEffect？？？");
     } else {
+      console.log("trigger useEffect？？？");
       document.documentElement.classList.remove(DARK);
       isBrowser() && window.localStorage.setItem("mode", LIGHT);
     }
