@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const parseRegExp = /\-\-\-.*?\-\-\-/gs;
+const parseRegExp = /\-\-\-.*?\-\-\-/s;
 
 const traverseNotes = (dir, fn) => {
   const files = fs.readdirSync(dir);
@@ -27,7 +27,7 @@ const traverseNotes = (dir, fn) => {
 };
 
 const getCompiledHeader = (data) => {
-  const headConfig = data.match(/\-\-\-.*?\-\-\-/gs);
+  const headConfig = data.match(parseRegExp);
   const headLine = headConfig[0].split("\n").slice(1, -1);
   const headConfigObj = new Map();
   headLine.forEach((v) => {
@@ -49,7 +49,7 @@ const getReplaceHeaderData = (data, headConfigObj) => {
   });
   headStr = headStr + "---";
 
-  const newData = data.replace(/\-\-\-.*?\-\-\-/gs, headStr);
+  const newData = data.replace(parseRegExp);
   return newData;
   // return headStr;
 };
