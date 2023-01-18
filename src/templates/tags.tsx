@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 import React, { useEffect, useState } from "react";
 
-import Layout, { MODE } from "../components/Layout";
+import Layout from "../components/Layout";
 import BlogList from "../components/BlogList";
 import SideBar from "../components/SideBar";
 import { Blog } from "../pages/blogs";

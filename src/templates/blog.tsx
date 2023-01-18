@@ -1,14 +1,15 @@
 import { graphql, Link } from "gatsby";
 import React, { useEffect, useState } from "react";
-import Layout, { MODE, MODE_LINK_ID } from "../components/Layout";
+import Layout from "../components/Layout";
 import SidebarWrapper from "../components/SidebarWrapper";
-import { formatDateToCn } from "../utils";
+import { formatDateToCn, isBrowser } from "../utils";
 import Tags from "../components/Tags";
 import "../styles/blogTemplate.css";
 import "../styles/github-markdown-dark.css";
 import "../styles/github-markdown-light.css";
 import SEO from "../components/SEO";
 import Comments from "../components/comments";
+import { BLOG_TYPE, MODE } from "../utils/constants/enums";
 
 interface DetailContent {
   title: string;
@@ -21,9 +22,13 @@ export default ({ data }) => {
     markdownRemark: {
       html,
       excerpt,
-      frontmatter: { title, date, category, tags },
+      frontmatter: { title, date, category, tags, type },
     },
   } = data;
+
+  const isBlog = type === BLOG_TYPE.NOTE;
+  const mode = isBrowser() && (localStorage.getItem("mode") as MODE);
+  console.log(isBlog, "isBlog");
 
   return (
     <Layout>
@@ -34,7 +39,7 @@ export default ({ data }) => {
             className="markdown-body"
             dangerouslySetInnerHTML={{ __html: html }}
           />
-          {/* <Comments /> */}
+          {isBlog && <Comments mode={mode || MODE.DARK} />}
         </article>
         <SidebarWrapper title="详情">
           <ul>
@@ -100,6 +105,7 @@ export const query = graphql`
         tags
         title
         thumbnail
+        type
       }
     }
   }

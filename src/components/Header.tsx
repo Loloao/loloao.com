@@ -4,11 +4,7 @@ import Nav from "./Nav";
 import Moon from "../assets/Moon";
 import Sun from "../assets/Sun";
 import { isBrowser } from "../utils";
-
-export enum MODE {
-  DARK = "dark",
-  LIGHT = "light",
-}
+import { MODE } from "../utils/constants/enums";
 
 interface HeaderProps {
   onChangeMode?: (mode: MODE) => void;

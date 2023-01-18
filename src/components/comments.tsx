@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { MODE } from "./Header";
+import { MODE } from "../utils/constants/enums";
 
 interface Props {
   mode: MODE;
@@ -28,6 +28,7 @@ export default (props: Props) => {
   };
 
   useEffect(() => {
+    console.log("trigger mount comment");
     mountComments();
   }, [mode]);
   return <div id="comments-wrapper" />;

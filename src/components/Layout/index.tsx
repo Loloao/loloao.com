@@ -1,5 +1,5 @@
 import React, { FC, useLayoutEffect } from "react";
-import Header, { MODE as MODE_VALUE } from "../Header";
+import Header from "../Header";
 import Footer from "../Footer";
 import { insertLink } from "../../utils";
 
@@ -28,4 +28,3 @@ const Content = (props: props) => {
 };
 
 export default Content;
-export const MODE = MODE_VALUE;
