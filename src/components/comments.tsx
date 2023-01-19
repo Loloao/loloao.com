@@ -9,9 +9,12 @@ interface Props {
 export default (props: Props) => {
   const { mode } = props;
   const mountComments = () => {
+    console.log(mode, "mode");
     const commentsWrapper = document.getElementById("comments-wrapper");
+    if (commentsWrapper?.hasChildNodes) {
+      commentsWrapper.innerHTML = "";
+    }
     const commentScript = document.createElement("script");
-    const theme = localStorage.getItem("mode");
 
     commentScript.async = true;
     commentScript.src = "https://utteranc.es/client.js";
@@ -20,7 +23,7 @@ export default (props: Props) => {
     commentScript.setAttribute("id", "utterances");
     commentScript.setAttribute(
       "theme",
-      theme === MODE.LIGHT ? "github-light" : "github-dark"
+      mode === MODE.LIGHT ? "github-light" : "github-dark"
     );
     commentScript.setAttribute("crossorigin", "anonymous");
 

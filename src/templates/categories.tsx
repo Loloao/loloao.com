@@ -28,23 +28,21 @@ export default ({ data }) => {
   }, timelineMap);
 
   return (
-    <Layout>
-      <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
-        <div className="flex-1 mr-10">
-          {Array.from(timelineMap.keys()).map((v) => {
-            return (
-              <BlogList
-                key={v}
-                title={v}
-                blogList={timelineMap.get(v)}
-                doNotShowYear
-              />
-            );
-          })}
-        </div>
-        <SideBar />
+    <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
+      <div className="flex-1 mr-10">
+        {Array.from(timelineMap.keys()).map((v) => {
+          return (
+            <BlogList
+              key={v}
+              title={v}
+              blogList={timelineMap.get(v)}
+              doNotShowYear
+            />
+          );
+        })}
       </div>
-    </Layout>
+      <SideBar />
+    </div>
   );
 };
 

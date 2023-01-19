@@ -1,5 +1,5 @@
 import { graphql, Link } from "gatsby";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import SidebarWrapper from "../components/SidebarWrapper";
 import { formatDateToCn, isBrowser } from "../utils";
@@ -10,6 +10,7 @@ import "../styles/github-markdown-light.css";
 import SEO from "../components/SEO";
 import Comments from "../components/comments";
 import { BLOG_TYPE, MODE } from "../utils/constants/enums";
+import modeContext from "../context/modeContext";
 
 interface DetailContent {
   title: string;
@@ -26,12 +27,12 @@ export default ({ data }) => {
     },
   } = data;
 
+  const mode = useContext(modeContext);
+
   const isBlog = type === BLOG_TYPE.NOTE;
-  const mode = isBrowser() && (localStorage.getItem("mode") as MODE);
-  console.log(isBlog, "isBlog");
 
   return (
-    <Layout>
+    <>
       <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
         {/* 设置 max-width 和 min-width 才为响应式 */}
         <article className="max-w-full min-w-0">
@@ -71,7 +72,7 @@ export default ({ data }) => {
           )}
         </SidebarWrapper>
       </div>
-    </Layout>
+    </>
   );
 };
 

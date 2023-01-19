@@ -35,23 +35,23 @@ export default function blogs({ data }) {
     return sum;
   }, timelineMap);
   return (
-    <Layout>
-      <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
-        <div className="flex-1 lg:mr-10">
-          {Array.from(timelineMap.keys()).map((v) => {
-            return (
-              <BlogList
-                title={v}
-                key={v}
-                doNotShowYear
-                blogList={timelineMap.get(v)}
-              />
-            );
-          })}
-        </div>
-        <SideBar />
+    // <Layout>
+    <div className="grid grid-rows-[1fr_auto] lg:grid-cols-[1fr_300px] gap-6 mt-3 sm:mt-0">
+      <div className="flex-1 lg:mr-10">
+        {Array.from(timelineMap.keys()).map((v) => {
+          return (
+            <BlogList
+              title={v}
+              key={v}
+              doNotShowYear
+              blogList={timelineMap.get(v)}
+            />
+          );
+        })}
       </div>
-    </Layout>
+      <SideBar />
+    </div>
+    // </Layout>
   );
 }
 

@@ -11,7 +11,8 @@ import config from "../utils/config";
 export default function Home({ data }) {
   const latest = data.allMarkdownRemark.edges.map((v) => v.node.frontmatter);
   return (
-    <Layout>
+    <>
+      {/*<Layout>*/}
       <h1 className="text-4xl font-bold mt-[50px]">嗨！我是李泱!</h1>
       <br />
       <div className="text-lg mt-6">欢迎来到我的 web 基地.</div>
@@ -28,7 +29,8 @@ export default function Home({ data }) {
           
         </div>
       </BlockWrapper> */}
-    </Layout>
+      {/*</Layout>*/}
+    </>
   );
 }
 

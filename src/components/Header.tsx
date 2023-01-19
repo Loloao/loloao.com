@@ -1,34 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "gatsby";
 import Nav from "./Nav";
 import Moon from "../assets/Moon";
 import Sun from "../assets/Sun";
 import { isBrowser } from "../utils";
 import { MODE } from "../utils/constants/enums";
+import modeContext from "../context/modeContext";
 
 interface HeaderProps {
-  onChangeMode?: (mode: MODE) => void;
+  changeMode: (mode: MODE) => void;
 }
 
 const Header = (props: HeaderProps) => {
+  const mode = useContext(modeContext);
+  const { changeMode } = props;
   const { LIGHT, DARK } = MODE;
-  const modeValue = isBrowser() && window.localStorage.getItem("mode");
-  console.log(modeValue, "Header modeValue");
-
-  const [mode, switchMode] = useState<MODE>(modeValue === LIGHT ? LIGHT : DARK);
-
-  useEffect(() => {
-    if (mode === DARK) {
-      document.documentElement.classList.add(DARK);
-      isBrowser() && window.localStorage.setItem("mode", DARK);
-      console.log("trigger useEffect？？？");
-    } else {
-      console.log("trigger useEffect？？？");
-      document.documentElement.classList.remove(DARK);
-      isBrowser() && window.localStorage.setItem("mode", LIGHT);
-    }
-    props.onChangeMode?.(mode);
-  }, [mode]);
 
   const getModeSvg = () => {
     if (mode === MODE.DARK) return <Moon />;
@@ -53,7 +39,7 @@ const Header = (props: HeaderProps) => {
       </div>
       <div
         className="flex justify-center items-center dark:hover:border-slate-400 dark:bg-gray-900 dark:border-gray-600 border-gray-500 hover:border-gray-500 border rounded-full cursor-pointer w-10 h-10 self-center"
-        onClick={() => switchMode(mode === DARK ? LIGHT : DARK)}
+        onClick={() => changeMode(mode === DARK ? LIGHT : DARK)}
       >
         {getModeSvg()}
       </div>
