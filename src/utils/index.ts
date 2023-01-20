@@ -55,3 +55,6 @@ export const insertLink = (linkId: string, linkHref: string) => {
 // 所以需要判断是否存在 window 再调用 window 的方法比如 localStorage
 // https://stackoverflow.com/questions/64371186/gatsby-window-not-available-during-server-side-rendering-build-error
 export const isBrowser = () => typeof window !== "undefined";
+
+export const isHTMLDark = () =>
+  document.documentElement.classList.contains("dark");

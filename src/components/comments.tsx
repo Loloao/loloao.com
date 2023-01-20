@@ -9,11 +9,12 @@ interface Props {
 export default (props: Props) => {
   const { mode } = props;
   const mountComments = () => {
-    console.log(mode, "mode");
     const commentsWrapper = document.getElementById("comments-wrapper");
-    if (commentsWrapper?.hasChildNodes) {
-      commentsWrapper.innerHTML = "";
-    }
+    console.log(
+      commentsWrapper?.childNodes,
+      commentsWrapper?.hasChildNodes,
+      "nodes"
+    );
     const commentScript = document.createElement("script");
 
     commentScript.async = true;
@@ -26,12 +27,19 @@ export default (props: Props) => {
       mode === MODE.LIGHT ? "github-light" : "github-dark"
     );
     commentScript.setAttribute("crossorigin", "anonymous");
+    commentScript.onload = () => {
+      if (
+        commentsWrapper?.hasChildNodes &&
+        commentsWrapper.childNodes.length > 1
+      ) {
+        commentsWrapper.removeChild(commentsWrapper.childNodes[0]);
+      }
+    };
 
     commentsWrapper?.appendChild(commentScript);
   };
 
   useEffect(() => {
-    console.log("trigger mount comment");
     mountComments();
   }, [mode]);
   return <div id="comments-wrapper" />;

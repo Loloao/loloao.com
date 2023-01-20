@@ -8,11 +8,15 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  // 开发环境调试服务端渲染
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
     title: "Loloao",
-    siteUrl: "https://loloao.github.io",
+    siteUrl: "https://loloao.netlify.app",
     description: "我是一名前端工程师，这里是我的数字基地",
-    image: "/logo.webp",
+    image: "/logo-light.svg",
     twitterUsername: "",
     // feedUrl:
     // logo:

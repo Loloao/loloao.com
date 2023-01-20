@@ -4,16 +4,21 @@ import Footer from "./Footer";
 import { insertLink, isBrowser } from "../utils";
 import modeContext from "../context/modeContext";
 import { MODE } from "../utils/constants/enums";
+import { useLayoutEffect } from "react";
 
 interface props {
   children?: React.ReactNode;
 }
 
 const Content = (props: props) => {
-  const initialMode = isBrowser() && localStorage.getItem("mode");
-  const [mode, setMode] = useState<MODE>((initialMode as MODE) || MODE.DARK);
+  const [mode, setMode] = useState<MODE>(MODE.DARK);
   const ModeProvider = modeContext.Provider;
   const { DARK, LIGHT } = MODE;
+
+  useEffect(() => {
+    const initialMode = isBrowser() && localStorage.getItem("mode");
+    setMode(initialMode as MODE);
+  }, []);
 
   useEffect(() => {
     if (mode === DARK) {
