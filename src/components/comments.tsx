@@ -22,6 +22,7 @@ export default (props: Props) => {
     commentScript.setAttribute("repo", "Loloao/comments");
     commentScript.setAttribute("issue-term", "title");
     commentScript.setAttribute("id", "utterances");
+    commentScript.setAttribute("defer", true);
     commentScript.setAttribute(
       "theme",
       mode === MODE.LIGHT ? "github-light" : "github-dark"
